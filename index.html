@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>music player Design</title>
+   <link rel="stylesheet" href="style.css">
+   <script src="https://kit.fontawesome.com/4a1926713f.js" crossorigin="anonymous"></script>
+
+
+   
+   <!--background start-->
+
+</head>
+<body>
+    <div class="container">
+        <div class="musicplayer">
+        <nav>
+            <div class="circle">
+                <i class="fa-solid fa-angle-left"></i>
+            </div>
+            <div class="circle">
+                <i class="fa-solid fa-bars"></i> 
+            </nav>
+            <img src="images/img 1.jpg" class="song-img">
+
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+
+            <h1>Bloody Sweet(from"LEO")</h1>
+            <p>Anirudh Ravichander,Siddharth Basrur</p>
+
+            <audio  id="song">
+                <source src="images/LEO - Bloody Sweet (Lyrics) Thalapathy Vijay Anirudh Ravichander Siddharth Basrur.mp3" type="audio/mpeg">
+            </audio>
+          
+        <input type="range" value="0" id="progress">
+
+        <div class="controls">
+            <div><i class="fa-solid fa-forward"></i></div>
+            <div onclick="playPause()"><i class="fa-solid fa-play" id="ctrlIcon"></i></div>
+            <div><i class="fa-solid fa-backward"></i></div>
+           
+       
+    </div> 
+    </div>
+
+    <!--background end-->
+
+ <script>
+    let progress = document.getElementById("progress");
+    let song = document.getElementById("song");
+    let ctrlIcon = document.getElementById("ctrlIcon");
+
+   song.onloadedmetadata = function(){
+    progress.max = song.duration;
+    progress.value = song.currentTime;
+   } 
+
+   function playPause(){
+    if(ctrlIcon.classList.contains("fa-pause"))
+    {
+        song.pause();
+        ctrlIcon.classList.remove("fa-pause");
+        ctrlIcon.classList.add("fa-paly");
+    }
+
+    else{
+        song.play();
+        ctrlIcon.classList.add("fa-pause");
+        ctrlIcon.classList.remove("fa-play");
+
+    }
+
+   }
+
+   if(song.play()){
+    setInterval(()=>{progress.value = song.currentTime},500);
+   }
+
+   progress.onchange= function(){
+    song.play();
+    song.currentTime = progress.value;
+    ctrlIcon.classList.add("fa-pause");
+    ctrlIcon.classList.remove("fa-play");
+
+
+   }
+
+
+ </script>
+ 
+    
+</body>
+</html>
